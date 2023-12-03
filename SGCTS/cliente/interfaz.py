@@ -32,7 +32,7 @@ class Frame(tk.Frame):
         self.pack()
 
         # Para Conf el ancho y la altura  bg es fondo de la ventana
-        self.config(bg='blue')
+        self.config(bg='#004a74')
         
         self.campo_variables()
     
@@ -41,69 +41,69 @@ class Frame(tk.Frame):
     def campo_variables(self):
         # Label de cada campo
         #Label Cálculo de Variación de Costa
-        self.label_nombre= tk.Label(self,text= 'Cálculo de Variación de Costa ')
+        self.label_calculo_variacion= tk.Label(self,text= 'Cálculo de Variación de Costa ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',18,'bold'),bg='light blue')
+        self.label_calculo_variacion.config(font= ('Arial',18,'bold'),bg='#02d3e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=0,column=0, padx=10,pady=10,columnspan= 5)
+        self.label_calculo_variacion.grid(row=0,column=0, padx=10,pady=10,columnspan= 5)
         
         # Densidad del mar
-        self.label_nombre= tk.Label(self,text= 'Densidad del mar (ρ) : ')
+        self.label_densidad_mar= tk.Label(self,text= 'Densidad del mar (ρ) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_densidad_mar.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=1,column=0, padx=10,pady=10)
+        self.label_densidad_mar.grid(row=1,column=0, padx=10,pady=10)
     
         # Label Densidad de la arena 
-        self.label_nombre= tk.Label(self,text= 'Densidad de la arena (ρs) : ')
+        self.label_densidad_arena= tk.Label(self,text= 'Densidad de la arena (ρs) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_densidad_arena.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=2,column=0, padx=10,pady=10)
+        self.label_densidad_arena.grid(row=2,column=0, padx=10,pady=10)
 
         # Label Coeficiente de Porocidad
-        self.label_nombre= tk.Label(self,text= 'Coeficiente de Porocidad (n) : ')
+        self.label_coeficiente_porocidad= tk.Label(self,text= 'Coeficiente de Porocidad (n) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_coeficiente_porocidad.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=3,column=0, padx=10,pady=10)
+        self.label_coeficiente_porocidad.grid(row=3,column=0, padx=10,pady=10)
 
 
         # Label de Altura
-        self.label_nombre= tk.Label(self,text= 'Altura  (Hb) : ')
+        self.label_altura= tk.Label(self,text= 'Altura  (Hb) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_altura.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=4,column=0, padx=10,pady=10)
+        self.label_altura.grid(row=4,column=0, padx=10,pady=10)
 
         # Label Ángulo de Rompiente
-        self.label_nombre= tk.Label(self,text= 'Ángulo de Rompiente (α) : ')
+        self.label_angulo= tk.Label(self,text= 'Ángulo de Rompiente (α) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_angulo.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=1,column=3, padx=10,pady=10)
+        self.label_angulo.grid(row=1,column=3, padx=10,pady=10)
 
          # Label Índice de Rompiente
-        self.label_nombre= tk.Label(self,text= 'Índice de Rompiente (k) : ')
+        self.label_indice= tk.Label(self,text= 'Índice de Rompiente (k) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_indice.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=2,column=3, padx=10,pady=10)
+        self.label_indice.grid(row=2,column=3, padx=10,pady=10)
 
          # Label Acelaración Gravitacional
-        self.label_nombre= tk.Label(self,text= 'Acelaración Gravitacional (g) : ')
+        self.label_aceleracion= tk.Label(self,text= 'Acelaración Gravitacional (g) : ')
         # Config la letra 
-        self.label_nombre.config(font= ('Arial',12,'bold'),bg='blue')
+        self.label_aceleracion.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_nombre.grid(row=3,column=3, padx=10,pady=10)
+        self.label_aceleracion.grid(row=3,column=3, padx=10,pady=10)
 
         # Entrys de cada campo
         # Entrys Densidad_Mar
@@ -148,6 +148,26 @@ class Frame(tk.Frame):
         self.entry_acelaración_gravitacional.config(width=10, font=('Arial',12))
         self.entry_acelaración_gravitacional.grid(row=3, column=4,padx=10,pady=10,columnspan= 2)
 
+        # Boton Procesar
+        self.boton_nuevo= tk.Button(self,text="Procesar")
+        self.boton_nuevo.config(width=15,
+        # en htmlcolorcodes.com se obtienen los colores 
+        # fg- color de letra bg - color de fondo
+        # cursor='hand2' cambiar el curso de flecha a manito
+        # activebackground - Para cambiar el color cuando le de al boton 
+        font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
+        self.boton_nuevo.grid(row=5, column=3,padx=10,pady=10)
+
+         # Boton Cancelar
+        self.boton_nuevo= tk.Button(self,text="Cancelar")
+        self.boton_nuevo.config(width=15,
+        # en htmlcolorcodes.com se obtienen los colores 
+        # fg- color de letra bg - color de fondo
+        # cursor='hand2' cambiar el curso de flecha a manito
+        # activebackground - Para cambiar el color cuando le de al boton 
+        font=('Arial',12,'bold'),fg='red',bg='white',cursor='hand2',activebackground= 'gray')
+        self.boton_nuevo.grid(row=5, column=4,padx=10,pady=10)
+ 
 
         
 
