@@ -35,6 +35,8 @@ class Frame(tk.Frame):
         self.config(bg='#004a74')
         
         self.campo_variables()
+        self.desabilitar_campos()
+        
     
     
     # Campos de variables
@@ -148,25 +150,71 @@ class Frame(tk.Frame):
         self.entry_acelaración_gravitacional.config(width=10, font=('Arial',12))
         self.entry_acelaración_gravitacional.grid(row=3, column=4,padx=10,pady=10,columnspan= 2)
 
-        # Boton Procesar
-        self.boton_nuevo= tk.Button(self,text="Procesar")
+        #Boton Nuevo 
+        self.boton_nuevo= tk.Button(self,text="Nuevo",command =self.habilitar_campos)
         self.boton_nuevo.config(width=15,
         # en htmlcolorcodes.com se obtienen los colores 
         # fg- color de letra bg - color de fondo
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
-        self.boton_nuevo.grid(row=5, column=3,padx=10,pady=10)
+        self.boton_nuevo.grid(row=5, column=2,padx=10,pady=10)
+        
+        # Boton Procesar
+        self.boton_procesar= tk.Button(self,text="Procesar",command = self.desabilitar_campos)
+        self.boton_procesar.config(width=15,
+        # en htmlcolorcodes.com se obtienen los colores 
+        # fg- color de letra bg - color de fondo
+        # cursor='hand2' cambiar el curso de flecha a manito
+        # activebackground - Para cambiar el color cuando le de al boton 
+        font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
+        self.boton_procesar.grid(row=5, column=3,padx=10,pady=10)
 
          # Boton Cancelar
-        self.boton_nuevo= tk.Button(self,text="Cancelar")
-        self.boton_nuevo.config(width=15,
+        self.boton_cancelar= tk.Button(self,text="Cancelar",command = self.desabilitar_campos)
+        self.boton_cancelar.config(width=15,
         # en htmlcolorcodes.com se obtienen los colores 
         # fg- color de letra bg - color de fondo
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='red',bg='white',cursor='hand2',activebackground= 'gray')
-        self.boton_nuevo.grid(row=5, column=4,padx=10,pady=10)
+        self.boton_cancelar.grid(row=5, column=4,padx=10,pady=10)
+
+         # Metodos para habilitar los campos
+    # La funcion se activa cuando le dan al boton a nuevo
+    def habilitar_campos(self):
+        #self.mi_nombre.set(' ')
+         #self.mi_duracion.set(' ')
+         #self.mi_genero.set(' ')
+
+         self.entry_densidad_mar.config(state='normal')
+         self.entry_densidad_arena.config(state='normal')
+         self.entry_coeficiente_porocidad.config(state='normal')
+         self.entry_altura.config(state='normal')
+         self.entry_angulo_rompiente.config(state='normal')
+         self.entry_indice_rompiente.config(state='normal')
+         self.entry_acelaración_gravitacional.config(state='normal')
+
+         self.boton_procesar.config(state='normal')
+         self.boton_cancelar.config(state='normal')
+
+
+    def desabilitar_campos(self):
+        
+
+        self.entry_densidad_mar.config(state='disabled')
+        self.entry_densidad_arena.config(state='disabled')
+        self.entry_coeficiente_porocidad.config(state='disabled')
+        self.entry_altura.config(state='disabled')
+        self.entry_angulo_rompiente.config(state='disabled')
+        self.entry_indice_rompiente.config(state='disabled')
+        self.entry_acelaración_gravitacional.config(state='disabled')
+
+
+        self.boton_procesar.config(state='disabled')
+        self.boton_cancelar.config(state='disabled')
+
+    
  
 
         
