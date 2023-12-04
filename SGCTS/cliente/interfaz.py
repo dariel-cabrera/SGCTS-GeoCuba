@@ -109,44 +109,45 @@ class Frame(tk.Frame):
 
         # Entrys de cada campo
         # Entrys Densidad_Mar
-        self.densidad_mar= tk.StringVar()
-        self.entry_densidad_mar= tk.Entry(self,textvariable= self.densidad_mar)
+        
+        self.mi_densidad_mar= tk.StringVar()
+        self.entry_densidad_mar= tk.Entry(self,textvariable= self.mi_densidad_mar)
         self.entry_densidad_mar.config(width=10, font=('Arial',12))
         self.entry_densidad_mar.grid(row=1, column=1,padx=10,pady=10,columnspan= 2)
 
          # Entrys Densidad_Arena
-        self.densidad_arena= tk.StringVar()
-        self.entry_densidad_arena= tk.Entry(self,textvariable= self.densidad_arena)
+        self.mi_densidad_arena= tk.StringVar()
+        self.entry_densidad_arena= tk.Entry(self,textvariable= self.mi_densidad_arena)
         self.entry_densidad_arena.config(width=10, font=('Arial',12))
         self.entry_densidad_arena.grid(row=2, column=1,padx=10,pady=10,columnspan= 2)
 
         # Entrys coeficiente_porocidad
-        self.coeficiente_porocidad= tk.StringVar()
-        self.entry_coeficiente_porocidad= tk.Entry(self,textvariable= self.coeficiente_porocidad)
+        self.mi_coeficiente_porocidad= tk.StringVar()
+        self.entry_coeficiente_porocidad= tk.Entry(self,textvariable= self.mi_coeficiente_porocidad)
         self.entry_coeficiente_porocidad.config(width=10, font=('Arial',12))
         self.entry_coeficiente_porocidad.grid(row=3, column=1,padx=10,pady=10,columnspan= 2)
 
          # Entrys Altura
-        self.altura= tk.StringVar()
-        self.entry_altura= tk.Entry(self,textvariable= self.altura)
+        self.mi_altura= tk.StringVar()
+        self.entry_altura= tk.Entry(self,textvariable= self.mi_altura)
         self.entry_altura.config(width=10, font=('Arial',12))
         self.entry_altura.grid(row=4, column=1,padx=10,pady=10,columnspan= 2)
 
         # Entrys angulo_rompiente
-        self.angulo_rompiente= tk.StringVar()
-        self.entry_angulo_rompiente= tk.Entry(self,textvariable= self.angulo_rompiente)
+        self.mi_angulo_rompiente= tk.StringVar()
+        self.entry_angulo_rompiente= tk.Entry(self,textvariable= self.mi_angulo_rompiente)
         self.entry_angulo_rompiente.config(width=10, font=('Arial',12))
         self.entry_angulo_rompiente.grid(row=1, column=4,padx=10,pady=10,columnspan= 2)
 
          # Entrys indice_rompiente
-        self.indice_rompiente= tk.StringVar()
-        self.entry_indice_rompiente= tk.Entry(self,textvariable= self.indice_rompiente)
+        self.mi_indice_rompiente= tk.StringVar()
+        self.entry_indice_rompiente= tk.Entry(self,textvariable= self.mi_indice_rompiente)
         self.entry_indice_rompiente.config(width=10, font=('Arial',12))
         self.entry_indice_rompiente.grid(row=2, column=4,padx=10,pady=10,columnspan= 2)
 
         # Entrys acelaración_gravitacional
-        self.acelaración_gravitacional= tk.StringVar()
-        self.entry_acelaración_gravitacional= tk.Entry(self,textvariable= self.acelaración_gravitacional)
+        self.mi_acelaración_gravitacional= tk.StringVar()
+        self.entry_acelaración_gravitacional= tk.Entry(self,textvariable= self.mi_acelaración_gravitacional)
         self.entry_acelaración_gravitacional.config(width=10, font=('Arial',12))
         self.entry_acelaración_gravitacional.grid(row=3, column=4,padx=10,pady=10,columnspan= 2)
 
@@ -161,7 +162,7 @@ class Frame(tk.Frame):
         self.boton_nuevo.grid(row=5, column=2,padx=10,pady=10)
         
         # Boton Procesar
-        self.boton_procesar= tk.Button(self,text="Procesar",command = self.desabilitar_campos)
+        self.boton_procesar= tk.Button(self,text="Procesar",command = self.guardar_datos)
         self.boton_procesar.config(width=15,
         # en htmlcolorcodes.com se obtienen los colores 
         # fg- color de letra bg - color de fondo
@@ -183,9 +184,14 @@ class Frame(tk.Frame):
          # Metodos para habilitar los campos
     # La funcion se activa cuando le dan al boton a nuevo
     def habilitar_campos(self):
-        #self.mi_nombre.set(' ')
-         #self.mi_duracion.set(' ')
-         #self.mi_genero.set(' ')
+         self.mi_densidad_mar.set('')
+         self.mi_densidad_arena.set('')
+         self.mi_coeficiente_porocidad.set('')
+         self.mi_altura.set('')
+         self.mi_angulo_rompiente.set('')
+         self.mi_indice_rompiente.set('')
+         self.mi_acelaración_gravitacional.set('')
+
 
          self.entry_densidad_mar.config(state='normal')
          self.entry_densidad_arena.config(state='normal')
@@ -200,7 +206,13 @@ class Frame(tk.Frame):
 
 
     def desabilitar_campos(self):
-        
+        self.mi_densidad_mar.set('')
+        self.mi_densidad_arena.set('')
+        self.mi_coeficiente_porocidad.set('')
+        self.mi_altura.set('')
+        self.mi_angulo_rompiente.set('')
+        self.mi_indice_rompiente.set('')
+        self.mi_acelaración_gravitacional.set('')
 
         self.entry_densidad_mar.config(state='disabled')
         self.entry_densidad_arena.config(state='disabled')
@@ -213,6 +225,10 @@ class Frame(tk.Frame):
 
         self.boton_procesar.config(state='disabled')
         self.boton_cancelar.config(state='disabled')
+
+     def guardar_datos(self):
+        
+        self.desabilitar_campos
 
     
  
