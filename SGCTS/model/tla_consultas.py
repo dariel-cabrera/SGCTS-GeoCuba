@@ -64,3 +64,16 @@ class tla:
     
     def str (self):
         return f'tla[{self.ubicacion},{self.constante_K},{self.densidad_mar},{self.densidad_arena},{self.coeficiente_porocidad},{self.altura},{self.angulo_rompiente},{self.indice_rompiente},{self.acelaración_gravitacional},{self.resultado}]'
+
+def guardar(tla):
+    conexion=ConexionDB
+
+    sql=f"""INSERT INTO tla (ubicacion,constante_K,densidad_mar,densidad_arena,coeficiente_porocidad,altura,angulo_rompiente,indice_rompiente,acelaración_gravitacional,resultado) VALUES('{tla.ubicacion}','{tla.mi_densidad_mar}','{tla.densidad_arena}','{tla.constante_K}','{tla.coeficiente_porocidad}','{tla.altura}','{tla.angulo_rompiente}','{tla.indice_rompiente}','{tla.acelaración_gravitacional}','{tla.resultado}')
+    """
+    try:
+        conexion.cursor.execute(sql)
+        conexion.cerrar()
+    except: 
+        titulo= 'Conexion al Registro'
+        mensaje= ' La tabla transporte logitudinal de sedimentos  no esta creado en la Base de Datos'
+        messagebox.showerror(titulo,mensaje)
