@@ -1,13 +1,14 @@
 import tkinter as tk
 from tkinter  import ttk
+from model.tla_consultas import crear_tabla, borrar_tabla
 
 #Barra de Menu Archivo Inicio Funcionalidades MiPerfil
 def barra_menu(root):
     barra_menu=tk.Menu(root)
-    root.config(menu= barra_menu,width=300,height=300)
+    root.config(menu=barra_menu,width=300,height=300)
 
     #Para que no haga espacio inecesario se agg tearoff
-    #menu_inicio= tk.Menu(barra_menu,tearoff = 0)
+    #menu_inicio= tk.Menu(barra_menu)
     #barra_menu.add_cascade(Label ='Archivo',menu = menu_inicio)
 
     #menu_inicio.add_command(Label = 'Crear Registro en BD')
