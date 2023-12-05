@@ -96,3 +96,21 @@ def listar ():
         messagebox.showwarning(titulo,mensaje)
         
     return lista_tla
+
+
+def editar (tla,id_tla):
+    conexion=ConexionDB()
+
+    sql=f""" UPDATE peliculas
+    SET ubicacion='{tla.ubicacion}',densidad_mar='{tla.mi_densidad_mar}',densidad_arena='{tla.densidad_arena}',constante_K='{tla.constante_K}',coeficiente_porocidad='{tla.coeficiente_porocidad}',altura='{tla.altura}',angulo_rompiente='{tla.angulo_rompiente}',indice_rompiente'{tla.indice_rompiente}',acelaración_gravitacional='{tla.acelaración_gravitacional}',resultado='{tla.resultado}'
+    WHERE id_pelicula='{id_pelicula}' """
+
+    try:
+        conexion.cursor.execute(sql)
+        conexion.cerrar()
+
+    except:
+        titulo='Edicion de datos'
+        mensaje='No se a podido editar este registro'
+        messagebox.showerror(titulo,mensaje)
+    
