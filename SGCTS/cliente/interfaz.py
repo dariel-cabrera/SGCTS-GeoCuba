@@ -236,7 +236,6 @@ class Frame(tk.Frame):
         #self.lista_peliculas.reverse() 
         
         self.tabla= ttk.Treeview (self, column=('Ubicacion','ρ', 'ρs','n','Hb','α','k','g','K','Q'))
-        self.tabla.config(bg='blue')
         self.tabla.grid(row=6,column=0,columnspan= 11)
 
         #Scrollbar para la tabla si excede 10 registros
@@ -263,6 +262,27 @@ class Frame(tk.Frame):
         #for p in self.lista_peliculas:
             #self.tabla.insert('', o, text= p[0])
             #values=(p[1],p[2],p[3])
+        
+        #Boton Editar 
+        self.boton_editar= tk.Button(self,text="Editar")
+        self.boton_editar.config(width=15,
+        # en htmlcolorcodes.com se obtienen los colores 
+        # fg- color de letra bg - color de fondo
+        # cursor='hand2' cambiar el curso de flecha a manito
+        # activebackground - Para cambiar el color cuando le de al boton 
+        font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
+        self.boton_editar.grid(row=7, column=1,padx=10,pady=10)
+        
+         # Boton Eliminar
+        self.boton_eliminar= tk.Button(self,text="Eliminar")
+        self.boton_eliminar.config(width=15,
+        # en htmlcolorcodes.com se obtienen los colores 
+        # fg- color de letra bg - color de fondo
+        # cursor='hand2' cambiar el curso de flecha a manito
+        # activebackground - Para cambiar el color cuando le de al boton 
+        font=('Arial',12,'bold'),fg='red',bg='white',cursor='hand2',activebackground= 'gray')
+        self.boton_eliminar.grid(row=7, column=2,padx=10,pady=10)
+
 
     
  
