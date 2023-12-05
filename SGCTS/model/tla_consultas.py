@@ -65,6 +65,8 @@ class tla:
     def str (self):
         return f'tla[{self.ubicacion},{self.constante_K},{self.densidad_mar},{self.densidad_arena},{self.coeficiente_porocidad},{self.altura},{self.angulo_rompiente},{self.indice_rompiente},{self.acelaración_gravitacional},{self.resultado}]'
 
+
+
 def guardar(tla):
     conexion=ConexionDB
 
@@ -77,3 +79,20 @@ def guardar(tla):
         titulo= 'Conexion al Registro'
         mensaje= ' La tabla transporte logitudinal de sedimentos  no esta creado en la Base de Datos'
         messagebox.showerror(titulo,mensaje)
+
+
+def listar ():
+    conexion=ConexionDB
+
+    lista_tla=[]
+    sql= 'SELECT * FROM peliculas'
+    try:
+        conexion.cursor.execute(sql)
+        lista_pelicula= conexion.cursor.fetchall()
+        conexion.cerrar()
+    except:
+        titulo= 'Conexion al Registro'
+        mensaje= 'Crea la tabla en la base de datos'
+        messagebox.showwarning(titulo,mensaje)
+        
+    return lista_tla
