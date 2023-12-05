@@ -46,3 +46,21 @@ def borrar_tabla():
         titulo= 'Borrar Registro'
         mensaje= 'No hay tabla para borrar'
         messagebox.showerror(titulo,mensaje)
+
+class tla:
+    
+    def init (self,ubicacion,constante_K,densidad_mar,densidad_arena,coeficiente_porocidad,altura,angulo_rompiente,indice_rompiente,acelaración_gravitacional,resultado):
+        self.id_tla= None
+        self.ubicacion= ubicacion
+        self.constante_K= constante_K
+        self.densidad_mar= densidad_mar
+        self.densidad_arena= densidad_arena
+        self.coeficiente_porocidad= coeficiente_porocidad
+        self.altura= altura
+        self.angulo_rompiente= angulo_rompiente
+        self.indice_rompiente= indice_rompiente
+        self.acelaración_gravitacional= acelaración_gravitacional
+        self.resultado= resultado
+    
+    def str (self):
+        return f'tla[{self.ubicacion},{self.constante_K},{self.densidad_mar},{self.densidad_arena},{self.coeficiente_porocidad},{self.altura},{self.angulo_rompiente},{self.indice_rompiente},{self.acelaración_gravitacional},{self.resultado}]'
