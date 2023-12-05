@@ -20,13 +20,29 @@ def crear_tabla():
         PRIMARY KEY(id_sgcts AUTOINCREMENT)
     )
     '''
-    conexion.cursor.execute(sql)
-    conexion.cerrar()
-
+   #Para evitar que por consola me mande un error cuando ya la tabla ya esta creada se usa try 
+    try: 
+        conexion.cursor.execute(sql)
+        conexion.cerrar()
+        titulo="Crear Registro"
+        mensaje= "Se creo la tabla en la base de datos"
+        messagebox.showinfo(titulo,mensaje)
+    except:
+        titulo="Crear Registro"
+        mensaje= "La tabla ya esta creada" 
+        messagebox.showerror(titulo,mensaje)
 def borrar_tabla():
     conexion= ConexionDB()
 
     sql='DROP TABLE tla'
-     
-    conexion.cursor.execute(sql)
-    conexion.cerrar()
+    try: 
+        conexion.cursor.execute(sql)
+        conexion.cerrar()
+
+        titulo= 'Borrar Registro'
+        mensaje= 'La tabla de la Base de Datos se borro con exito'
+        messagebox.showinfo(titulo,mensaje)
+    except:
+        titulo= 'Borrar Registro'
+        mensaje= 'No hay tabla para borrar'
+        messagebox.showerror(titulo,mensaje)
