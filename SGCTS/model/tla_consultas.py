@@ -47,7 +47,7 @@ def borrar_tabla():
         mensaje= 'No hay tabla para borrar'
         messagebox.showerror(titulo,mensaje)
 
-class tla:
+class TLA:
     
     def init (self,ubicacion,constante_K,densidad_mar,densidad_arena,coeficiente_porocidad,altura,angulo_rompiente,indice_rompiente,acelaración_gravitacional,resultado):
         self.id_tla= None
@@ -63,14 +63,14 @@ class tla:
         self.resultado= resultado
     
     def str (self):
-        return f'tla[{self.ubicacion},{self.constante_K},{self.densidad_mar},{self.densidad_arena},{self.coeficiente_porocidad},{self.altura},{self.angulo_rompiente},{self.indice_rompiente},{self.acelaración_gravitacional},{self.resultado}]'
+        return f'TLA[{self.ubicacion},{self.constante_K},{self.densidad_mar},{self.densidad_arena},{self.coeficiente_porocidad},{self.altura},{self.angulo_rompiente},{self.indice_rompiente},{self.acelaración_gravitacional},{self.resultado}]'
 
 
 
-def guardar(tla):
+def guardar(TLA):
     conexion=ConexionDB
 
-    sql=f"""INSERT INTO tla (ubicacion,constante_K,densidad_mar,densidad_arena,coeficiente_porocidad,altura,angulo_rompiente,indice_rompiente,acelaración_gravitacional,resultado) VALUES('{tla.ubicacion}','{tla.mi_densidad_mar}','{tla.densidad_arena}','{tla.constante_K}','{tla.coeficiente_porocidad}','{tla.altura}','{tla.angulo_rompiente}','{tla.indice_rompiente}','{tla.acelaración_gravitacional}','{tla.resultado}')
+    sql=f"""INSERT INTO tla (ubicacion,constante_K,densidad_mar,densidad_arena,coeficiente_porocidad,altura,angulo_rompiente,indice_rompiente,acelaración_gravitacional,resultado) VALUES('{TLA.ubicacion}','{TLA.mi_densidad_mar}','{TLA.densidad_arena}','{TLA.constante_K}','{TLA.coeficiente_porocidad}','{TLA.altura}','{TLA.angulo_rompiente}','{TLA.indice_rompiente}','{TLA.acelaración_gravitacional}','{TLA.resultado}')
     """
     try:
         conexion.cursor.execute(sql)

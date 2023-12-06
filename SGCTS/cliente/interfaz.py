@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter  import ttk
 from model.tla_consultas import crear_tabla, borrar_tabla
-from model.tla_consultas import tla,guardar
+from model.tla_consultas import TLA,guardar
 from .ecuaciones import transporte_logitudinal_arena
+from tkinter import messagebox
 
 #Barra de Menu Archivo Inicio Funcionalidades MiPerfil
 def barra_menu(root):
@@ -170,11 +171,11 @@ class Frame(tk.Frame):
         self.entry_indice_rompiente.config(width=20, font=('Arial',12))
         self.entry_indice_rompiente.grid(row=2, column=3,padx=10,pady=10)
 
-        # Entrys acelaración_gravitacional
-        self.mi_acelaración_gravitacional= tk.StringVar()
-        self.entry_acelaración_gravitacional= tk.Entry(self,textvariable= self.mi_acelaración_gravitacional)
-        self.entry_acelaración_gravitacional.config(width=20, font=('Arial',12))
-        self.entry_acelaración_gravitacional.grid(row=3, column=3,padx=10,pady=10)
+        # Entrys aceleración_gravitacional
+        self.mi_aceleracion_gravitacional= tk.StringVar()
+        self.entry_aceleracion_gravitacional= tk.Entry(self,textvariable= self.mi_aceleracion_gravitacional)
+        self.entry_aceleracion_gravitacional.config(width=20, font=('Arial',12))
+        self.entry_aceleracion_gravitacional.grid(row=3, column=3,padx=10,pady=10)
         
         # Entrys ubicacion
         self.mi_ubicacion= tk.StringVar()
@@ -222,7 +223,7 @@ class Frame(tk.Frame):
          self.mi_altura.set('')
          self.mi_angulo_rompiente.set('')
          self.mi_indice_rompiente.set('')
-         self.mi_acelaración_gravitacional.set('')
+         self.mi_aceleracion_gravitacional.set('')
 
 
          self.entry_densidad_mar.config(state='normal')
@@ -231,7 +232,7 @@ class Frame(tk.Frame):
          self.entry_altura.config(state='normal')
          self.entry_angulo_rompiente.config(state='normal')
          self.entry_indice_rompiente.config(state='normal')
-         self.entry_acelaración_gravitacional.config(state='normal')
+         self.entry_aceleracion_gravitacional.config(state='normal')
 
          self.boton_procesar.config(state='normal')
          self.boton_cancelar.config(state='normal')
@@ -244,7 +245,7 @@ class Frame(tk.Frame):
         self.mi_altura.set('')
         self.mi_angulo_rompiente.set('')
         self.mi_indice_rompiente.set('')
-        self.mi_acelaración_gravitacional.set('')
+        self.mi_aceleracion_gravitacional.set('')
 
         self.entry_densidad_mar.config(state='disabled')
         self.entry_densidad_arena.config(state='disabled')
@@ -252,16 +253,29 @@ class Frame(tk.Frame):
         self.entry_altura.config(state='disabled')
         self.entry_angulo_rompiente.config(state='disabled')
         self.entry_indice_rompiente.config(state='disabled')
-        self.entry_acelaración_gravitacional.config(state='disabled')
+        self.entry_aceleracion_gravitacional.config(state='disabled')
 
 
         self.boton_procesar.config(state='disabled')
         self.boton_cancelar.config(state='disabled')
 
     def guardar_datos(self):
-        resultado= transporte_logitudinal_arena(self.mi_densidad_mar.get(), self.mi_acelaración_gravitacional,self.mi_indice_rompiente.get(),self.mi_densidad_arena.get(),self.mi_coeficiente_porocidad.get(), self.mi_altura.get(),self.mi_angulo_rompiente.get(),self.mi_constante_K.get())
+        p= float(self.mi_densidad_mar.get())
+        g=float(self.mi_aceleracion_gravitacional.get())
+        k=float(self.mi_indice_rompiente.get())
+        ps=float(self.mi_densidad_arena.get())
+        n=float(self.mi_coeficiente_porocidad.get())
+        hb=float(self.mi_altura.get())
+        a=float(self.mi_angulo_rompiente.get())
+        K=float(self.mi_constante_K.get())
+
+        resultado= transporte_logitudinal_arena(p,g,k,ps,n,hb,a,K)
         
-        tla = tla(
+        titulo="Calculo"
+        mensaje= "Se calculo correctamente resultado: " +str(resultado)
+        messagebox.showinfo(titulo,mensaje)
+
+        TLA = TLA(
             self.mi_ubicacion.get(),
             self.mi_constante_K.get(), 
             self.mi_densidad_arena.get(),
@@ -270,7 +284,7 @@ class Frame(tk.Frame):
             self.mi_altura.get(),
             self.mi_angulo_rompiente.get(),
             self.mi_indice_rompiente.get(),
-            self.mi_acelaración_gravitacional,
+            self.aceleración_gravitacional(),
             resultado,
         )
         guardar(tla)
