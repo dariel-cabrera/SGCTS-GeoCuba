@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter  import ttk
 from model.tla_consultas import crear_tabla, borrar_tabla
-from model.tla_consultas import tla
+from model.tla_consultas import tla,guardar
 from .ecuaciones import transporte_logitudinal_arena
 
 #Barra de Menu Archivo Inicio Funcionalidades MiPerfil
@@ -260,6 +260,7 @@ class Frame(tk.Frame):
 
     def guardar_datos(self):
         resultado= transporte_logitudinal_arena(self.mi_densidad_mar.get(), self.mi_acelaración_gravitacional,self.mi_indice_rompiente.get(),self.mi_densidad_arena.get(),self.mi_coeficiente_porocidad.get(), self.mi_altura.get(),self.mi_angulo_rompiente.get(),self.mi_constante_K.get())
+        
         tla = tla(
             self.mi_ubicacion.get(),
             self.mi_constante_K.get(), 
@@ -270,9 +271,9 @@ class Frame(tk.Frame):
             self.mi_angulo_rompiente.get(),
             self.mi_indice_rompiente.get(),
             self.mi_acelaración_gravitacional,
-            resultado
+            resultado,
         )
-
+        guardar(tla)
         self.desabilitar_campos()
 
     def tabla_listado_calculos(self): 
