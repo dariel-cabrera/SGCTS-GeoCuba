@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter  import ttk
 from model.tla_consultas import crear_tabla, borrar_tabla
+from model.tla_consultas import tla
 
 #Barra de Menu Archivo Inicio Funcionalidades MiPerfil
 def barra_menu(root):
@@ -53,12 +54,12 @@ class Frame(tk.Frame):
         self.label_calculo_variacion.grid(row=0,column=0, padx=10,pady=10,columnspan= 5)
         
         # Densidad del mar
-        self.label_densidad_mar= tk.Label(self,text= 'Densidad del mar (ρ) : ')
+        self.label_constante_K= tk.Label(self,text= 'Densidad del mar (ρ) : ')
         # Config la letra 
-        self.label_densidad_mar.config(font= ('Arial',12,'bold'),bg='#0299e4')
+        self.label_constante_K.config(font= ('Arial',12,'bold'),bg='#0299e4')
         # Posicion de los Label
         # para separar un los label se usa padx y pady
-        self.label_densidad_mar.grid(row=1,column=0, padx=10,pady=10)
+        self.label_constante_K.grid(row=1,column=0, padx=10,pady=10)
     
         # Label Densidad de la arena 
         self.label_densidad_arena= tk.Label(self,text= 'Densidad de la arena (ρs) : ')
@@ -85,6 +86,14 @@ class Frame(tk.Frame):
         # para separar un los label se usa padx y pady
         self.label_altura.grid(row=4,column=0, padx=10,pady=10)
 
+        # Constante K
+        self.label_constante_K= tk.Label(self,text= 'Constante (K) : ')
+        # Config la letra 
+        self.label_constante_K.config(font= ('Arial',12,'bold'),bg='#0299e4')
+        # Posicion de los Label
+        # para separar un los label se usa padx y pady
+        self.label_constante_K.grid(row=5,column=0, padx=10,pady=10)
+
         # Label Ángulo de Rompiente
         self.label_angulo= tk.Label(self,text= 'Ángulo de Rompiente (α) : ')
         # Config la letra 
@@ -109,9 +118,16 @@ class Frame(tk.Frame):
         # para separar un los label se usa padx y pady
         self.label_aceleracion.grid(row=3,column=2, padx=10,pady=10)
 
+        # Label Ubicacion
+        self.label_ubicacion= tk.Label(self,text= 'Ubicacion  : ')
+        # Config la letra 
+        self.label_ubicacion.config(font= ('Arial',12,'bold'),bg='#0299e4')
+        # Posicion de los Label
+        # para separar un los label se usa padx y pady
+        self.label_ubicacion.grid(row=4,column=2, padx=10,pady=10)
+
         # Entrys de cada campo
         # Entrys Densidad_Mar
-        
         self.mi_densidad_mar= tk.StringVar()
         self.entry_densidad_mar= tk.Entry(self,textvariable= self.mi_densidad_mar)
         self.entry_densidad_mar.config(width=20, font=('Arial',12))
@@ -135,7 +151,13 @@ class Frame(tk.Frame):
         self.entry_altura.config(width=20, font=('Arial',12))
         self.entry_altura.grid(row=4, column=1,padx=10,pady=10)
 
-        # Entrys angulo_rompiente
+         # Entrys Constante K
+        self.mi_constante_K= tk.StringVar()
+        self.entry_constante_K= tk.Entry(self,textvariable= self.mi_constante_K)
+        self.entry_constante_K.config(width=20, font=('Arial',12))
+        self.entry_constante_K.grid(row=5, column=1,padx=10,pady=10)
+
+        # Entrys angulo_rompientes
         self.mi_angulo_rompiente= tk.StringVar()
         self.entry_angulo_rompiente= tk.Entry(self,textvariable= self.mi_angulo_rompiente)
         self.entry_angulo_rompiente.config(width=20, font=('Arial',12))
@@ -152,6 +174,13 @@ class Frame(tk.Frame):
         self.entry_acelaración_gravitacional= tk.Entry(self,textvariable= self.mi_acelaración_gravitacional)
         self.entry_acelaración_gravitacional.config(width=20, font=('Arial',12))
         self.entry_acelaración_gravitacional.grid(row=3, column=3,padx=10,pady=10)
+        
+        # Entrys ubicacion
+        self.mi_ubicacion= tk.StringVar()
+        self.entry_mi_ubicacion= tk.Entry(self,textvariable= self.mi_ubicacion)
+        self.entry_mi_ubicacion.config(width=20, font=('Arial',12))
+        self.entry_mi_ubicacion.grid(row=4, column=3,padx=10,pady=10)
+
 
         #Boton Nuevo 
         self.boton_nuevo= tk.Button(self,text="Nuevo",command =self.habilitar_campos)
@@ -161,7 +190,7 @@ class Frame(tk.Frame):
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
-        self.boton_nuevo.grid(row=5, column=1,padx=10,pady=10)
+        self.boton_nuevo.grid(row=6, column=1,padx=10,pady=10)
         
         # Boton Procesar
         self.boton_procesar= tk.Button(self,text="Procesar",command= self.guardar_datos)
@@ -171,7 +200,7 @@ class Frame(tk.Frame):
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
-        self.boton_procesar.grid(row=5, column=2,padx=10,pady=10)
+        self.boton_procesar.grid(row=6, column=2,padx=10,pady=10)
 
          # Boton Cancelar
         self.boton_cancelar= tk.Button(self,text="Cancelar",command = self.desabilitar_campos)
@@ -181,7 +210,7 @@ class Frame(tk.Frame):
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='red',bg='white',cursor='hand2',activebackground= 'gray')
-        self.boton_cancelar.grid(row=5, column=3,padx=10,pady=10)
+        self.boton_cancelar.grid(row=6, column=3,padx=10,pady=10)
 
          # Metodos para habilitar los campos
     # La funcion se activa cuando le dan al boton a nuevo
@@ -229,6 +258,12 @@ class Frame(tk.Frame):
         self.boton_cancelar.config(state='disabled')
 
     def guardar_datos(self):
+        #tla = tla(
+            #self.mi_densidad_arena.get()
+            #self.mi_densidad_mar.get()
+            #self.mi_coeficiente_porocidad()
+        #)
+
         self.desabilitar_campos()
 
     def tabla_listado_calculos(self): 
@@ -237,7 +272,7 @@ class Frame(tk.Frame):
         #self.lista_peliculas.reverse() 
         
         self.tabla= ttk.Treeview (self, column=('Ubicacion','ρ', 'ρs','n','Hb','α','k','g','K','Q'))
-        self.tabla.grid(row=6,column=0,columnspan= 11)
+        self.tabla.grid(row=7,column=0,columnspan= 11)
 
         #Scrollbar para la tabla si excede 10 registros
         #self.scroll=ttk.Scrollbar(self,orient='vertical',command=self.tabla.ysiew)
@@ -272,7 +307,7 @@ class Frame(tk.Frame):
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='white',bg='#0299e4',cursor='hand2',activebackground= 'gray')
-        self.boton_editar.grid(row=7, column=1,padx=10,pady=10)
+        self.boton_editar.grid(row=8, column=1,padx=10,pady=10)
         
          # Boton Eliminar
         self.boton_eliminar= tk.Button(self,text="Eliminar")
@@ -282,7 +317,7 @@ class Frame(tk.Frame):
         # cursor='hand2' cambiar el curso de flecha a manito
         # activebackground - Para cambiar el color cuando le de al boton 
         font=('Arial',12,'bold'),fg='red',bg='white',cursor='hand2',activebackground= 'gray')
-        self.boton_eliminar.grid(row=7, column=2,padx=10,pady=10)
+        self.boton_eliminar.grid(row=8, column=2,padx=10,pady=10)
 
 
     
